@@ -1,0 +1,155 @@
+@cols:12;
+@num1:1080px;  //大屏
+@num2:735px;   //中屏
+
+/*
+流式布局
+固定布局
+*/
+
+.container{
+  &-fluid{
+    width:100%;
+    margin:auto;
+    .clear();
+  }
+  &-fluid .row{
+    width:100%;
+    .clear();
+  }
+  //小屏铺满页面，宽度为百分之百
+  &{
+    width:100%;
+    margin:auto;
+    .clear();
+  }
+  & .row{
+    width:100%;
+    .clear();
+  }
+}
+//小屏
+.for(s);
+
+.col-s-hide{
+  display: block;
+}
+.col-s-hide{
+  display: none;
+}
+//小屏四张图片尺寸
+.promo-accessories{
+  background-size: 736px 200px;
+  background-repeat: no-repeat;
+  background-image: url("../img/accessories_small.jpg");
+}
+.promo-ipad{
+  background-size: 736px 200px;
+  background-repeat: no-repeat;
+  background-image: url("../img/ipad_pro_small.jpg");
+}
+.promo-airpods{
+  background-size: 736px 200px;
+  background-repeat: no-repeat;
+  background-image: url("../img/airpods_small.jpg");
+}
+.promo-iphone{
+  background-size: 736px 200px;
+  background-repeat: no-repeat;
+  background-image: url("../img/iphone_upgrade_small.jpg");
+}
+
+//小屏循环
+.for(@type,@i:1) when (@i<=@cols){
+  .container-fluid .row .col-@{type}-@{i}{
+    width:@i/(@cols)*100%;
+    float: left;
+    position: relative;
+  }
+  .container .row .col-@{type}-@{i}{
+    width:@i/(@cols)*100%;
+    float: left;
+    position: relative;
+  }
+  .for(@type,@i:@i+1);
+}
+
+
+
+//中屏
+@media screen and (min-width: @num2){
+  .container{width:100%};
+  .for(m);
+  .col-s-hide{
+    display: block;
+  }
+  .col-m-hide{
+    display: none;
+  }
+  //中屏四张图片尺寸
+  .promo-accessories{
+    background-size: 640px 200px;
+    background-repeat: no-repeat;
+    background-image: url("../img/accessories_m.jpg");
+  }
+  .promo-ipad{
+    background-size: 640px 200px;
+    background-repeat: no-repeat;
+    background-image: url("../img/ipad_pro_m.jpg");
+  }
+  .promo-airpods{
+    background-size: 640px 200px;
+    background-repeat: no-repeat;
+    background-image: url("../img/airpods_m.jpg");
+  }
+  .promo-iphone{
+    background-size: 640px 200px;
+    background-repeat: no-repeat;
+    background-image: url("../img/iphone_upgrade_m.jpg");
+  }
+}
+//大屏
+@media screen and (min-width: @num1){
+  .container{width:100%};
+  .for(l);
+  .col-s-hide{
+    display: block;
+  }
+  .col-m-hide{
+    display: block;
+  }
+  .col-l-hide{
+    display: none;
+  }
+  //大屏四张图片尺寸
+  .promo-accessories{
+    background-size: 640px 200px;
+    background-repeat: no-repeat;
+    background-image: url("../img/accessories_m.jpg");
+  }
+  .promo-ipad{
+    background-size: 640px 200px;
+    background-repeat: no-repeat;
+    background-image: url("../img/ipad_pro_m.jpg");
+  }
+  .promo-airpods{
+    background-size: 640px 200px;
+    background-repeat: no-repeat;
+    background-image: url("../img/airpods_m.jpg");
+  }
+  .promo-iphone{
+    background-size: 640px 200px;
+    background-repeat: no-repeat;
+    background-image: url("../img/iphone_upgrade_m.jpg");
+  }
+}
+
+.clear(){
+  &{
+    &:before,&:after{
+      content:"";
+      display:none;
+      clear:both;
+    }
+  }
+}
